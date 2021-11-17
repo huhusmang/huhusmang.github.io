@@ -45,9 +45,9 @@
     <link href="http://example.com/2021/11/17/hello/"/>
     <id>http://example.com/2021/11/17/hello/</id>
     <published>2021-11-17T02:26:12.000Z</published>
-    <updated>2021-11-17T15:09:20.143Z</updated>
+    <updated>2021-11-17T15:23:22.709Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>hello，这是我的第一篇博客,以后这里会记录我的日常生活和学习!</p><p>大概更新的学习内容会有CTF，python，Java的相关知识，期待您的来访~</p><p><img src="/.com//1.jpg"></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="Day1"><a href="#Day1" class="headerlink" title="Day1"></a>Day1</h2><p>hello，这是我的第一篇博客,以后这里会记录我的日常生活和学习!</p><p>大概更新的学习内容会有CTF，python，Java的相关知识，期待您的来访~</p><img src="/2021/11/17/hello/1.jpg" alt="相对路径图片" style="zoom:55%;">]]></content>
     
     
       
