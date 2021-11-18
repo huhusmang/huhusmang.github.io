@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-11-17T15:53:29.334Z</updated>
+  <updated>2021-11-18T12:22:27.557Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CNSS-2021-Recruit web复现</title>
+    <link href="http://example.com/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/"/>
+    <id>http://example.com/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/</id>
+    <published>2021-11-18T10:31:38.000Z</published>
+    <updated>2021-11-18T12:22:27.557Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Git泄露"><a href="#Git泄露" class="headerlink" title="Git泄露"></a>Git泄露</h2><p>在开始解答这道题之前，首先了解一下git的相关知识，以及git泄露的原理。</p><h4 id="1-git是什么"><a href="#1-git是什么" class="headerlink" title="1.git是什么"></a>1.git是什么</h4><p>  Git是<strong>分布式版本控制系统</strong>。</p><p>  <strong>版本控制系统</strong>就是在你每次进行每次操作时，都会记录下来，并且会使用相关的命令进行查取，也就是<strong>记录了你的日志</strong>。</p><p>  那何为分布式呢？分布式和集中式对立，不难理解集中式就是用一个中央服务器用来存储相关的文件，用户每次需要修改文件时，都需要再次从服务器上下载下来，修改完成之后再提交到服务器。而<strong>分布式就是每个人本地都有一套自己的完整版本库</strong>，这样修改自己的文件时就很方便。</p><h4 id="2-git一般工作流程"><a href="#2-git一般工作流程" class="headerlink" title="2.git一般工作流程"></a>2.git一般工作流程</h4><ol><li><p>从远程仓库中克隆 Git 资源作为<strong>本地仓库</strong>；</p></li><li><p>从本地仓库中checkout代码然后进行代码修改；</p></li><li><p>在提交本地仓库前先将代码提交到<strong>暂存区</strong>；</p></li><li><p>提交修改，提交到本地仓库；<strong>本地仓库中保存修改的各个历史版本</strong>；</p><img src="/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/1.jpg" alt="相对路径图片" style="zoom:55%;"></li></ol><h4 id="3-几个核心概念：工作区、暂存区、版本库、远程仓库、分支"><a href="#3-几个核心概念：工作区、暂存区、版本库、远程仓库、分支" class="headerlink" title="3.几个核心概念：工作区、暂存区、版本库、远程仓库、分支"></a>3.几个核心概念：工作区、暂存区、版本库、远程仓库、分支</h4><p>Workspace： 工作区，平时存放项目代码的地方</p><p>Index / Stage： 暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息</p><p>Repository： 仓库区（或版本库，就是隐藏目录.git），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本</p><p>Remote： 远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换</p><p>master：每次的提交Git都把它们串成一条时间线，这条时间线就是一个分支。截止到目前，只有一条时间线，在Git里这个分支叫主分支，即master分支。</p><img src="/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/2.jpg" alt="相对路径图片" style="zoom:55%;"><h4 id="4-git文件夹分析"><a href="#4-git文件夹分析" class="headerlink" title="4. .git文件夹分析"></a>4. .git文件夹分析</h4><p>hook: 存放一些sheel的地方。<br>info: 存放仓库的信息<br>object: 存放所有git对象的地方<br>refs: 存放提交hash的地方<br>config: github的配置信息<br>description：仓库的描述信息，主要给gitweb等git托管系统使用<br>HEAD: 映射到ref引用，能够找到下一次commit的前一次哈希值</p><h4 id="5-git泄露原理："><a href="#5-git泄露原理：" class="headerlink" title="5.git泄露原理："></a>5.git泄露原理：</h4><p>一般开发人员进行开发时，有这样的流程：</p><ol><li>初始化仓库 , 并将仓库托管在Coding或者Github上 , 便于远程协作/备份/部署</li><li>在本地进行网站开发 , 并定时提交commit , <strong>push到</strong>远程托管网站</li><li><strong>当一个阶段的开发差不多的时候 , 需要远程登陆服务器 , 通过托管网站再将发行版网站pull到Web目录下</strong></li><li>网站正常运行</li></ol><p>所以漏洞就处在部署时：</p><ul><li>开发人员在开发时，常常会先把源码提交到远程托管网站（如github），最后再从远程托管网站把源码<strong>pull到服务器的web目录下</strong>，如果忘记把.git文件删除，就造成此漏洞。<strong>利用.git文件恢复网站的源码，而源码里可能会有数据库的信息。</strong></li><li>当前大量开发人员使用git进行版本控制，对站点自动部署。 如果配置不当，可能会<strong>将.git文件夹直接部署到线上环境</strong>，这就引起了git泄露漏洞。</li></ul><h4 id="6-相关工具"><a href="#6-相关工具" class="headerlink" title="6.相关工具"></a>6.相关工具</h4><p>知道网站存在git泄露之后，可以通过Githack、Git_extract等工具提取 .git 隐藏文件。</p><hr><p>下面就来解答这道题：Githacker</p><p>题目暗示和git有关，所以可能是git泄露。</p><p>首先下载工具Git_extract: <a href="https://github.com/gakki429/Git_Extract%EF%BC%8C%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%9A">https://github.com/gakki429/Git_Extract，使用方法：</a></p><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python2 git_extract.py http:<span class="regexp">//</span>example.com<span class="regexp">/.git/</span>  <span class="comment">#注意，此工具和githack工具一样，都只能在python2中使用</span></span><br></pre></td></tr></table></figure><p>然后使用工具去下载此网站的 .git 文件:</p><img src="/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/6.jpg" alt="相对路径图片" style="zoom:55%;"><p>可以看到整个文件已经下载到目录里了：</p><img src="/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/3.jpg" alt="相对路径图片" style="zoom:55%;"><p>然后在下载到的 .git 文件里执行<strong>fsck（文件系统检测）命令</strong><br><code>git fsck --lost-found</code><br>这个命令会把悬空的blob恢复文件列举出来</p><img src="/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/4.jpg" alt="相对路径图片" style="zoom:55%;"><p>这时就可以通过<code>git show 11b2d674cc83c17990150726b4653bfe3c78c807</code> 命令查看当前哈希值对象的具体内容：</p><img src="/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/5.jpg" alt="相对路径图片" style="zoom:55%;">]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;Git泄露&quot;&gt;&lt;a href=&quot;#Git泄露&quot; class=&quot;headerlink&quot; title=&quot;Git泄露&quot;&gt;&lt;/a&gt;Git泄露&lt;/h2&gt;&lt;p&gt;在开始解答这道题之前，首先了解一下git的相关知识，以及git泄露的原理。&lt;/p&gt;
+&lt;h4 id=&quot;1-git是什么</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>反序列化</title>
