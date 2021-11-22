@@ -6,7 +6,7 @@
   <link href="http://example.com/atom.xml" rel="self"/>
   
   <link href="http://example.com/"/>
-  <updated>2021-11-20T15:03:31.245Z</updated>
+  <updated>2021-11-22T12:41:58.363Z</updated>
   <id>http://example.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>SQL注入</title>
+    <link href="http://example.com/2021/11/22/SQL%E6%B3%A8%E5%85%A5/"/>
+    <id>http://example.com/2021/11/22/SQL%E6%B3%A8%E5%85%A5/</id>
+    <published>2021-11-22T05:46:24.000Z</published>
+    <updated>2021-11-22T12:41:58.363Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、注入原理"><a href="#一、注入原理" class="headerlink" title="一、注入原理"></a>一、注入原理</h2><p>​    由于B/S(客户端 / 服务器模式)建立在互联网上，对安全控制能力较弱。开发人员在编写代码时对用户的<strong>输入没有进行严格的合法性判断</strong>，导致<strong>攻击者可以利用这个漏洞提交一段数据库查询代码</strong>，进而获取数据库中的一些信息。</p><img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/1.png" alt="相对路径图片" style="zoom:55%;"><h2 id="二、Mysql常用函数"><a href="#二、Mysql常用函数" class="headerlink" title="二、Mysql常用函数"></a>二、Mysql常用函数</h2><img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/2.png" alt="相对路径图片" style="zoom:55%;"><p>在返回数据库名时，要先使用一个数据库</p><img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/3.png" alt="相对路径图片" style="zoom:55%;">]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;一、注入原理&quot;&gt;&lt;a href=&quot;#一、注入原理&quot; class=&quot;headerlink&quot; title=&quot;一、注入原理&quot;&gt;&lt;/a&gt;一、注入原理&lt;/h2&gt;&lt;p&gt;​    由于B/S(客户端 / 服务器模式)建立在互联网上，对安全控制能力较弱。开发人员在编写代码时对用户</summary>
+      
+    
+    
+    
+    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    
+    
+    <category term="SQL" scheme="http://example.com/tags/SQL/"/>
+    
+  </entry>
   
   <entry>
     <title>豆瓣电影分类爬取</title>
