@@ -3,11 +3,11 @@
   <title>huhuの博客</title>
   
   <subtitle>记录生活中的点点滴滴</subtitle>
-  <link href="http://example.com/atom.xml" rel="self"/>
+  <link href="http://huhusmang.github.io/atom.xml" rel="self"/>
   
-  <link href="http://example.com/"/>
+  <link href="http://huhusmang.github.io/"/>
   <updated>2021-11-22T12:41:58.363Z</updated>
-  <id>http://example.com/</id>
+  <id>http://huhusmang.github.io/</id>
   
   <author>
     <name>huhu</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>SQL注入</title>
-    <link href="http://example.com/2021/11/22/SQL%E6%B3%A8%E5%85%A5/"/>
-    <id>http://example.com/2021/11/22/SQL%E6%B3%A8%E5%85%A5/</id>
+    <link href="http://huhusmang.github.io/2021/11/22/SQL%E6%B3%A8%E5%85%A5/"/>
+    <id>http://huhusmang.github.io/2021/11/22/SQL%E6%B3%A8%E5%85%A5/</id>
     <published>2021-11-22T05:46:24.000Z</published>
     <updated>2021-11-22T12:41:58.363Z</updated>
     
@@ -33,17 +33,17 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="http://huhusmang.github.io/categories/CTF/"/>
     
     
-    <category term="SQL" scheme="http://example.com/tags/SQL/"/>
+    <category term="SQL" scheme="http://huhusmang.github.io/tags/SQL/"/>
     
   </entry>
   
   <entry>
     <title>豆瓣电影分类爬取</title>
-    <link href="http://example.com/2021/11/20/%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1%E5%88%86%E7%B1%BB%E7%88%AC%E5%8F%96/"/>
-    <id>http://example.com/2021/11/20/%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1%E5%88%86%E7%B1%BB%E7%88%AC%E5%8F%96/</id>
+    <link href="http://huhusmang.github.io/2021/11/20/%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1%E5%88%86%E7%B1%BB%E7%88%AC%E5%8F%96/"/>
+    <id>http://huhusmang.github.io/2021/11/20/%E8%B1%86%E7%93%A3%E7%94%B5%E5%BD%B1%E5%88%86%E7%B1%BB%E7%88%AC%E5%8F%96/</id>
     <published>2021-11-20T14:40:24.000Z</published>
     <updated>2021-11-20T15:03:31.245Z</updated>
     
@@ -57,17 +57,17 @@
     
     
     
-    <category term="python" scheme="http://example.com/categories/python/"/>
+    <category term="python" scheme="http://huhusmang.github.io/categories/python/"/>
     
     
-    <category term="爬虫" scheme="http://example.com/tags/%E7%88%AC%E8%99%AB/"/>
+    <category term="爬虫" scheme="http://huhusmang.github.io/tags/%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
   <entry>
     <title>buuctf练习</title>
-    <link href="http://example.com/2021/11/18/buuctf%E7%BB%83%E4%B9%A0/"/>
-    <id>http://example.com/2021/11/18/buuctf%E7%BB%83%E4%B9%A0/</id>
+    <link href="http://huhusmang.github.io/2021/11/18/buuctf%E7%BB%83%E4%B9%A0/"/>
+    <id>http://huhusmang.github.io/2021/11/18/buuctf%E7%BB%83%E4%B9%A0/</id>
     <published>2021-11-18T15:05:43.000Z</published>
     <updated>2021-11-20T14:41:43.175Z</updated>
     
@@ -81,17 +81,17 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="http://huhusmang.github.io/categories/CTF/"/>
     
     
-    <category term="buu练习" scheme="http://example.com/tags/buu%E7%BB%83%E4%B9%A0/"/>
+    <category term="buu练习" scheme="http://huhusmang.github.io/tags/buu%E7%BB%83%E4%B9%A0/"/>
     
   </entry>
   
   <entry>
     <title>CNSS-2021-Recruit web复现</title>
-    <link href="http://example.com/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/"/>
-    <id>http://example.com/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/</id>
+    <link href="http://huhusmang.github.io/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/"/>
+    <id>http://huhusmang.github.io/2021/11/18/CNSS-2021-Recruit-web%E5%A4%8D%E7%8E%B0/</id>
     <published>2021-11-18T10:31:38.000Z</published>
     <updated>2021-11-20T14:42:06.617Z</updated>
     
@@ -106,17 +106,17 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="http://huhusmang.github.io/categories/CTF/"/>
     
     
-    <category term="Git泄露" scheme="http://example.com/tags/Git%E6%B3%84%E9%9C%B2/"/>
+    <category term="Git泄露" scheme="http://huhusmang.github.io/tags/Git%E6%B3%84%E9%9C%B2/"/>
     
   </entry>
   
   <entry>
     <title>反序列化</title>
-    <link href="http://example.com/2021/11/17/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
-    <id>http://example.com/2021/11/17/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</id>
+    <link href="http://huhusmang.github.io/2021/11/17/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
+    <id>http://huhusmang.github.io/2021/11/17/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/</id>
     <published>2021-11-17T07:32:32.000Z</published>
     <updated>2021-11-20T14:41:30.281Z</updated>
     
@@ -130,17 +130,17 @@
     
     
     
-    <category term="CTF" scheme="http://example.com/categories/CTF/"/>
+    <category term="CTF" scheme="http://huhusmang.github.io/categories/CTF/"/>
     
     
-    <category term="发序列化" scheme="http://example.com/tags/%E5%8F%91%E5%BA%8F%E5%88%97%E5%8C%96/"/>
+    <category term="发序列化" scheme="http://huhusmang.github.io/tags/%E5%8F%91%E5%BA%8F%E5%88%97%E5%8C%96/"/>
     
   </entry>
   
   <entry>
     <title>Hello</title>
-    <link href="http://example.com/2021/11/17/hello/"/>
-    <id>http://example.com/2021/11/17/hello/</id>
+    <link href="http://huhusmang.github.io/2021/11/17/hello/"/>
+    <id>http://huhusmang.github.io/2021/11/17/hello/</id>
     <published>2021-11-17T02:26:12.000Z</published>
     <updated>2021-11-17T15:34:45.669Z</updated>
     
@@ -155,10 +155,10 @@
     
     
     
-    <category term="Diary" scheme="http://example.com/categories/Diary/"/>
+    <category term="Diary" scheme="http://huhusmang.github.io/categories/Diary/"/>
     
     
-    <category term="Day1" scheme="http://example.com/tags/Day1/"/>
+    <category term="Day1" scheme="http://huhusmang.github.io/tags/Day1/"/>
     
   </entry>
   
