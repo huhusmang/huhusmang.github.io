@@ -6,7 +6,7 @@
   <link href="http://huhusmang.github.io/atom.xml" rel="self"/>
   
   <link href="http://huhusmang.github.io/"/>
-  <updated>2021-11-29T14:11:42.987Z</updated>
+  <updated>2021-11-29T14:13:46.387Z</updated>
   <id>http://huhusmang.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://huhusmang.github.io/2021/11/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     <id>http://huhusmang.github.io/2021/11/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</id>
     <published>2021-11-29T11:53:34.000Z</published>
-    <updated>2021-11-29T14:11:42.987Z</updated>
+    <updated>2021-11-29T14:13:46.387Z</updated>
     
     <content type="html"><![CDATA[<h2 id="第一章："><a href="#第一章：" class="headerlink" title="第一章："></a>第一章：</h2><h4 id="知识大纲："><a href="#知识大纲：" class="headerlink" title="知识大纲："></a>知识大纲：</h4><img src="/2021/11/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/ch1.png" alt="相对路径图片" style="zoom:55%;"><h4 id="课后习题："><a href="#课后习题：" class="headerlink" title="课后习题："></a>课后习题：</h4><img src="/2021/11/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/1.1.png" alt="相对路径图片" style="zoom:75%;"><p><strong>版本空间</strong>：从假设空间删除掉==与正例不一致和与反例一致==的假设后，剩余的假设所组成的集合。它可以看成是对正例的最大泛化。（需要注意的是$\textcolor{Red}{通配符*组成的假设，可能是符合反例的！}$）</p><hr><p>课后习题有点难哇~呜先看着做完再写上去</p><img src="/2021/11/29/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/bz.png" alt="相对路径图片" style="zoom:55%;">]]></content>
     
@@ -33,6 +33,10 @@
     
     
     
+    <category term="机器学习" scheme="http://huhusmang.github.io/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+    <category term="机器学习" scheme="http://huhusmang.github.io/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
